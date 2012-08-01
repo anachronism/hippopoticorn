@@ -12,7 +12,7 @@ var y3 = canvas.height;
 var depth = 6;
 
 function sierpinski(x1, y1, x2, y2, x3, y3, depth){
-  if(depth == 0)
+  if(depth === 0)
     drawTriangle(x1, y1, x2, y2, x3, y3);
   else{
     var x12 = (x1 + x2) / 2;

@@ -1,43 +1,69 @@
-function javascriipt(){
+function javascript(){
 var canvas = document.getElementById("canvas");
 var c = canvas.getContext("2d");
 
+var numStars = 1000;
+var radius = 0.5;
+var focalLength = canvas.width;
+
 var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
 
-var x1 = centerX;
-var y1 = 0;
-var x2 = canvas.width;
-var y2 = canvas.height;
-var x3 = 0;
-var y3 = canvas.height;
-var depth = 6;
+var stars = [], star;
+var i;
 
-function sierpinski(x1, y1, x2, y2, x3, y3, depth){
-  if(depth === 0)
-    drawTriangle(x1, y1, x2, y2, x3, y3);
-  else{
-    var x12 = (x1 + x2) / 2;
-    var y12 = (y1 + y2) / 2;
-    var x13 = (x1 + x3) / 2;
-    var y13 = (y1 + y3) / 2;
-    var x23 = (x2 + x3) / 2;
-    var y23 = (y2 + y3) / 2;
-    
-    sierpinski(x1, y1, x12, y12, x13, y13, depth - 1);
-    sierpinski(x12, y12, x2, y2, x23, y23, depth - 1);
-    sierpinski(x13, y13, x23, y23, x3, y3, depth - 1);
+initializeStars();
+
+setInterval(function(){
+  moveStars();
+  drawStars();
+},30);
+
+function initializeStars(){
+  for(i = 0; i < numStars; i++){
+    star = {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      z: Math.random() * canvas.width
+    };
+    stars.push(star);
   }
 }
 
-function drawTriangle(x1, y1, x2, y2, x3, y3){
-  c.beginPath();
-  c.moveTo(x1, y1);
-  c.lineTo(x2, y2);
-  c.lineTo(x3, y3);
-  c.closePath();
-  c.fill();
+function moveStars(){
+  for(i = 0; i < numStars; i++){
+    star = stars[i];
+    star.z--;
+    
+    if(star.z <= 0){
+      star.z = canvas.width;
+    }
+  }
 }
 
-sierpinski(x1, y1, x2, y2, x3, y3, depth);
+function drawStars(){
+  var pixelX, pixelY, pixelRadius;
+  
+  c.fillStyle = "rgba(0,0,0,.1)";
+  c.fillRect(0,0, canvas.width, canvas.height);
+  c.fillStyle = "white";
+  for(i = 0; i < numStars; i++){
+    star = stars[i];
+    
+    pixelX = (star.x - centerX) * (focalLength / star.z);
+    pixelX += centerX;
+    pixelY = (star.y - centerY) * (focalLength / star.z);
+    pixelY += centerY;
+    pixelRadius = radius * (focalLength / star.z);
+    
+    c.beginPath();
+    c.arc(pixelX, pixelY, pixelRadius, 0, 2 * Math.PI);
+    c.fill();
+  }
+}
+
+canvas.addEventListener("mousemove",function(e){
+  focalLength = e.x;
+});
 }
 javascript();

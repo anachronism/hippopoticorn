@@ -1,3 +1,4 @@
+function javascriipt(){
 var canvas = document.getElementById("canvas");
 var c = canvas.getContext("2d");
 
@@ -38,3 +39,5 @@ function drawTriangle(x1, y1, x2, y2, x3, y3){
 }
 
 sierpinski(x1, y1, x2, y2, x3, y3, depth);
+}
+javascript();

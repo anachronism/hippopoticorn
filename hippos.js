@@ -1,3 +1,5 @@
+
+function hippos(){
 var canvas = document.getElementById('YUS');
 var c = canvas.getContext('2d');
 var clickups = 0;
@@ -173,7 +175,7 @@ function drawLine(){
 //Commands
 setInterval(function(){
   //Resize canvas according to the window
-  if(canvas.width != window.innerWidth){
+ /* if(canvas.width != window.innerWidth){
     c.canvas.width = window.innerWidth;
     c.canvas.height = window.innerHeight;
   }
@@ -182,7 +184,7 @@ setInterval(function(){
     c.canvas.width = window.innerWidth;
     c.canvas.height = window.innerHeight;
   }
-  
+  */
   simulatePhysics();
   //c.clearRect(0, 0, canvas.width, canvas.height);
   drawBackground();
@@ -194,3 +196,7 @@ setInterval(function(){
 }, 30);
 
 drawLine();
+
+}
+
+hippos();

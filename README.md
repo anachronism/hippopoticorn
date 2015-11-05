@@ -1,23 +1,3 @@
 hippopoticorn
 =============
-
-WoBP
-<<<<<<< HEAD
-<<<<<<< HEAD
- 
- 
- yesh  
- 
- 
-=======
-# List
-* what
-* no
-1. yes
-2. no
-3. maybe
-
-
-   YES
-   ##maybe
-edditz???????????
+A simple javascript/HTML5 game in which a creature is moved using the mouse, in order to collect coins. A proof of an understanding of basic programming skills.
